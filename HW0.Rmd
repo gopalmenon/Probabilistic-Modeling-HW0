@@ -2,6 +2,8 @@
 title: "CS6190: Probabilistic Modeling Homework 0"
 author: "Gopal Menon"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
+header-includes:
+   - \usepackage{mathtools}
 output: pdf_document
 ---
 
@@ -40,7 +42,26 @@ $$
 Before I worked out the solution above, I was using the definition $Var(X) = E\left[X^2\right] - \mu_X^2$ and that did not help. After I realized that $\mu_X = E\left[X\right]$, the solution fell in place.
 \end{enumerate}
 
-\item
+\item Consider random variables $X$ and $Y$ with joint pdf
+$$
+    p(x,y)= 
+\begin{dcases}
+    x+y,& \text{for } 0\leq x \leq 1, \text{and } 0\leq y \leq 1\\
+    0,              & \text{otherwise}
+\end{dcases}
+$$
+\begin{enumerate}
+
+\item What is the marginal pdf $p(x)$?
+
+\item What is the conditional pdf $p(y|x)$?
+
+\item What is the conditional expectation $E\left[Y|X\right]$?
+
+\item What is the covariance $Cov(X,Y)$?
+
+\end{enumerate}
+
 \end{enumerate}
 
 \begin{thebibliography}{9}
