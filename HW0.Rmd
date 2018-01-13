@@ -31,9 +31,13 @@ Here $p_X(x)$, $p_Y(y)$ and $p_{X|Y=y}(x)$ are the probability density functions
 $$
 \begin{aligned}
 E\left[Var(X|Y) \right] + Var(E\left[ X|Y\right]) &= E\left[ E\left[X^2|Y\right] - E\left[X|Y\right] E\left[X|Y\right] \right] \\ &+ E\left[ E\left[X|Y\right] E\left[X|Y\right]\right] - E\left[ E\left[ X|Y \right]\right]E\left[ E\left[ X|Y \right]\right]\\
-&= a
+&= E \left[ E \left[ X^2|Y\right] \right] - E\left[ E\left[X|Y\right] E\left[X|Y\right] \right]\\&+ E\left[ E\left[X|Y\right] E\left[X|Y\right]\right] - E\left[X\right]E\left[X\right]\\
+&= E\left[X^2 \right] - E\left[X\right]E\left[X\right]\\
+&= Var(X)
 \end{aligned}
 $$
+
+Before I worked out the solution above, I was using the definition $Var(X) = E\left[X^2\right] - \mu_X^2$ and that did not help. After I realized that $\mu_X = E\left[X\right]$, the solution fell in place.
 \end{enumerate}
 
 \item
