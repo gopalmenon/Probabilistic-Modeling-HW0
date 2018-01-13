@@ -1,7 +1,7 @@
 ---
-title: "CS6190-HW0"
+title: "CS6190: Probabilistic Modeling Homework 0"
 author: "Gopal Menon"
-date: "1/12/2018"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
 output: pdf_document
 ---
 
@@ -12,9 +12,36 @@ knitr::opts_chunk$set(echo = TRUE)
 \item Let $X$ and $Y$ be continuous real-valued random variables. Prove the following:
 \begin{enumerate}
 \item $E\left[ E\left[X|Y \right]\right] = E\left[ X\right]$
+
+$$
+\begin{aligned}
+E\left[ E\left[X|Y \right]\right] &= \int_{-\infty}^{\infty}E\left[X|Y=y \right]p_Y(y)dy\\
+&= \int_{-\infty}^{\infty}\int_{-\infty}^{\infty}x\;p_{X|Y=y}(x)dx\;p_Y(y)dy\\
+&= \int_{-\infty}^{\infty}\int_{-\infty}^{\infty}x\;p_{X|Y=y}(x)p_Y(y)dxdy\\
+&= \int_{-\infty}^{\infty}\int_{-\infty}^{\infty}x\;p_{XY}(x, y)dxdy\\
+&= \int_{-\infty}^{\infty}x\int_{-\infty}^{\infty}p_{XY}(x, y)dy\;dx\\
+&= \int_{-\infty}^{\infty}x\;p_X(x)dx\\
+&= E\left[ X\right]
+\end{aligned}
+$$
+Here $p_X(x)$, $p_Y(y)$ and $p_{X|Y=y}(x)$ are the probability density functions for $X$, $Y$, and the conditional probability of $X$ given the value of $Y$. $p_{XY}(x,y)$ is the joint probability distribution function of $X$ and $Y$. I needed to look up the proof \cite{conexp} as I was not aware that the first step shown above could be done and due to this, I was getting an extra $y$ in the final result. The result I got before I looked up the proof was $yE\left[ X \right]$.
+
 \item $Var(X) = E\left[Var(X|Y) \right] + Var(E\left[ X|Y\right])$
+
+$$
+\begin{aligned}
+E\left[Var(X|Y) \right] + Var(E\left[ X|Y\right]) &= E\left[ E\left[X^2|Y\right] - E\left[X|Y\right] E\left[X|Y\right] \right] \\ &+ E\left[ E\left[X|Y\right] E\left[X|Y\right]\right] - E\left[ E\left[ X|Y \right]\right]E\left[ E\left[ X|Y \right]\right]\\
+&= a
+\end{aligned}
+$$
 \end{enumerate}
 
 \item
 \end{enumerate}
 
+\begin{thebibliography}{9}
+ 
+\bibitem{conexp} 
+\textit{Conditional Expectation}, www.statlect.com/fundamentals-of-probability/conditional-expectation.
+ 
+\end{thebibliography}
