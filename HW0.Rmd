@@ -4,6 +4,7 @@ author: "Gopal Menon"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 header-includes:
    - \usepackage{mathtools}
+   - \usepackage{amsmath}
 output: pdf_document
 ---
 
@@ -53,6 +54,23 @@ $$
 \begin{enumerate}
 
 \item What is the marginal pdf $p(x)$?
+$$
+\begin{aligned}
+p(x) &=  \int_{-\infty}^{\infty}p(x,y)dy\\
+&=\begin{dcases}
+    \int_0^1(x+y)dy, \text{for } 0\leq x \leq 1, \text{and } 0\leq y \leq 1\\
+    0,               \text{otherwise}
+\end{dcases}\\
+&= \begin{dcases}
+   \left(\frac{1}{2}x^2 +xy \right)\Big|_0^1, \text{for } 0\leq y \leq 1\\
+    0,               \text{otherwise}
+\end{dcases}\\
+&=\begin{dcases}
+    \frac{1}{2} + y, \text{for } 0\leq y \leq 1\\
+    0,               \text{otherwise}
+\end{dcases}\\
+\end{aligned}
+$$
 
 \item What is the conditional pdf $p(y|x)$?
 
