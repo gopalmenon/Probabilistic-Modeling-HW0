@@ -1,0 +1,20 @@
+---
+title: "CS6190-HW0"
+author: "Gopal Menon"
+date: "1/12/2018"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+\begin{enumerate}
+\item Let $X$ and $Y$ be continuous real-valued random variables. Prove the following:
+\begin{enumerate}
+\item $E\left[ E\left[X|Y \right]\right] = E\left[ X\right]$
+\item $Var(X) = E\left[Var(X|Y) \right] + Var(E\left[ X|Y\right])$
+\end{enumerate}
+
+\item
+\end{enumerate}
+
