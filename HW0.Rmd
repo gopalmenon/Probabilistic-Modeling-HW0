@@ -74,6 +74,16 @@ $$
 
 \item What is the conditional pdf $p(y|x)$?
 
+$$
+\begin{aligned}
+p(y|x) &= \frac{p(x,y)}{p(x)}\\
+ &=\begin{dcases}
+    \frac{x+y}{\frac{1}{2} + y}, \text{for } 0\leq x \leq 1, \text{and } 0\leq y \leq 1\\
+    0,               \text{otherwise}
+\end{dcases}
+\end{aligned}
+$$
+
 \item What is the conditional expectation $E\left[Y|X\right]$?
 
 \item What is the covariance $Cov(X,Y)$?
