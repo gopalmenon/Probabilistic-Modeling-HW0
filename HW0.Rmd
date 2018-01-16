@@ -247,6 +247,31 @@ $$
 
 \end{enumerate}
 
+\item Let $X \sim Exp(\lambda)$, i.e., the exponential distribution with pdf $p(x) = \lambda exp(-\lambda x)$. Let $Y = \sqrt{X}$.
+
+\begin{enumerate}
+
+\item What is the density function $p(y)$?
+
+$$
+\begin{aligned}
+Y&=\sqrt{X}\\
+f(x) &= \sqrt{x}\\
+f^{-1}(y) &= y^2\\
+p(y) &= \left | \frac{d}{dy}(f^{-1}(y)) \right |p(f^{-1}(y))\\
+&= \left | \frac{d}{dy}y^2 \right |p(y^2)\\
+&= 2y\lambda exp(-\lambda y^2)
+\end{aligned}
+$$
+
+\item What is the cdf, $F(y) = P(Y \leq y)$? Verify that $F(0) = 0$ and $F(\infty) = 1$.
+
+\item
+
+\item
+
+\end{enumerate}
+
 \end{enumerate}
 
 \begin{thebibliography}{9}
