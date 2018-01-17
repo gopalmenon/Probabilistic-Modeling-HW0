@@ -1,11 +1,14 @@
 ---
-title: "CS6190: Probabilistic Modeling Homework 0"
+title: 'CS6190: Probabilistic Modeling Homework 0'
 author: "Gopal Menon"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
 header-includes:
-   - \usepackage{mathtools}
-   - \usepackage{amsmath}
-output: pdf_document
+- \usepackage{mathtools}
+- \usepackage{amsmath}
 ---
 
 ```{r setup, include=FALSE}
@@ -260,15 +263,39 @@ f(x) &= \sqrt{x}\\
 f^{-1}(y) &= y^2\\
 p(y) &= \left | \frac{d}{dy}(f^{-1}(y)) \right |p(f^{-1}(y))\\
 &= \left | \frac{d}{dy}y^2 \right |p(y^2)\\
-&= 2y\lambda exp(-\lambda y^2)
+&= \begin{dcases}
+     2y\lambda exp(-\lambda y^2), \text{for } y \geq 0\\
+    0,               \text{otherwise}
+\end{dcases}\\
 \end{aligned}
 $$
 
 \item What is the cdf, $F(y) = P(Y \leq y)$? Verify that $F(0) = 0$ and $F(\infty) = 1$.
 
-\item
+The cdf can be found by integrating the pdf.
+$$
+\begin{aligned}
+F(y) &= P(Y \leq y) = \int_0^y 2y \lambda exp(-\lambda y^2)dy\\
+\text{Substituting } u &= -\lambda y^2 \text{, we get } dy = -\frac{1}{2 \lambda y}du\\
+\int 2y \lambda exp(-\lambda y^2)dy &= \int 2y \lambda exp(u) \times -\frac{1}{2 \lambda y}du\\
+&= -\int exp(u) du\\
+&= -exp(u)\\
+&= -exp(-\lambda y^2)\\
+F(y) &= -exp(-\lambda y^2)\Big|_0^y\\
+&=-exp(-\lambda y^2) - (-exp(-\lambda 0^2))\\
+&=-exp(-\lambda y^2) + 1\\
+&= 1-exp(-\lambda y^2)\\
+F(0)&=1-exp(-\lambda 0^2)\\
+&= 1-1\\
+&=0\\
+F(\infty)&= 1-exp(-\infty)\\
+&=1-0\\
+&= 1
+\end{aligned}
+$$
+\item What is the quantile function $F^{-1}$?
 
-\item
+\item Compute the mean, $E[Y]$, and variance, $Var(Y)$. \textbf{Hint:} Use integration by parts.
 
 \end{enumerate}
 
