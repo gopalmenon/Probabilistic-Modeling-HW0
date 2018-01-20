@@ -295,6 +295,18 @@ F(\infty)&= 1-exp(-\infty)\\
 $$
 \item What is the quantile function $F^{-1}$?
 
+If $q_p$ is the quantile value given by the quantile function $F^{-1}(q_p)$, based on the cdf above:
+
+$$
+\begin{aligned}
+q_p &=1-exp(-\lambda {(F^{-1}(q_p))}^2)\\
+exp(-\lambda {(F^{-1}(q_p))}^2) &= 1-q_p\\
+-\lambda {(F^{-1}(q_p))}^2 &= \ln(1-q_p)\\
+{(F^{-1}(q_p))}^2 &= \frac{-1}{\lambda}\ln(1-q_p)\\
+F^{-1}(q_p) &= \sqrt{\frac{-1}{\lambda}\ln(1-q_p)}
+\end{aligned}
+$$
+
 \item Compute the mean, $E[Y]$, and variance, $Var(Y)$. \textbf{Hint:} Use integration by parts.
 
 \end{enumerate}
