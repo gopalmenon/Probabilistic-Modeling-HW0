@@ -17,6 +17,7 @@ header-includes:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+
 \begin{enumerate}
 \item Let $X$ and $Y$ be continuous real-valued random variables. Prove the following:
 \begin{enumerate}
@@ -364,8 +365,11 @@ the {\tt runif} function in R for simulating uniform random varibles.
 
 \begin{enumerate}
 \item Generate 10,000 realizations of the random variable $Y$ with $\lambda = 2$.
+
+
 \item Plot a histogram of these numbers, using the {\tt hist} function with
 option {\tt freq = FALSE}.
+
 \item Use the {\tt lines} command to plot the pdf of $Y$ on top.
 \item Compute the sample mean and variance of your 10,000 realizations. Do they
 roughly match the values for $\E[Y]$ and $\Var(Y)$ you calculated above?
