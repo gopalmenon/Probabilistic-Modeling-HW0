@@ -327,6 +327,30 @@ $$
 
 \item Given a realization $y_1, y_2, \ldots, y_n$ from your random variable $Y$
 in the previous problem, what is the maximum likelihood estimate for $\lambda$?
+
+The likelihood function will be
+$$
+\begin{aligned}
+\mathcal{L}(\lambda) &= p_{Y_1, \ldots, Y_n}(y_1, y_2, \ldots, y_n; \lambda)\\
+&= \prod_{i=1}^n p_{Y_i}(y_i; \lambda), 
+  &\text{assuming $Y_i$ are independently distributed}\\
+&= \prod_{i=1}^n \left(2y\lambda exp(-\lambda y_i^2) \right)\\
+\ln(\mathcal{L}(\lambda)) = \ell(\lambda) &= \sum_{i=1}^n \ln\left(2y_i\lambda exp(-\lambda y_i^2) \right)\\
+&= \sum_{i=1}^n \ln(2y_i) + \sum_{i=1}^n \ln(\lambda) - \sum_{i=1}^n \lambda y_i^2\\
+\end{aligned}
+$$
+In order to find the maximum likelihood, we can find the maximum log likelihood since log is a monotonously increasing function. The first term above is a constant and we can find the maximum likelihood by setting the derivative with respect to $\lambda$ of the log likelihood to zero.
+$$
+\begin{aligned}
+\frac{d \ell(\lambda)}{d\lambda} &= \frac{d \sum_{i=1}^n \ln(2y_i)}{d\lambda} + \frac{d \sum_{i=1}^n \ln(\lambda)}{d\lambda} - \frac{d \sum_{i=1}^n \lambda y_i^2}{d\lambda}\\
+&= 0 + n\frac{d\ \ln(\lambda)}{d\lambda} - \sum_{i=1}^n y_i^2 \sum_{i=1}^n \frac{d\lambda}{d\lambda}\\
+&= n\frac{1}{\lambda} - \sum_{i=1}^n y_i^2 = 0\\
+\frac{n}{\lambda} &= \sum_{i=1}^ny_i^2\\
+\lambda &= \frac{n}{\sum_{i=1}^ny_i^2}, 
+  &\text{which is the maximum likely estimate for $\lambda$.}
+\end{aligned}
+$$
+
 \end{enumerate}
 \section*{R Coding Part}
 \begin{enumerate}
