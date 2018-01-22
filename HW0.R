@@ -6,7 +6,7 @@ get_Y_quantile <- function(quantile_value, exponential_rate) {
 # Random number generation function
 generate_random_number <- function(how_many, exponential_rate) {
   
-  # Genrate a uniform distribution between 0 and 1
+  # Uniform distribution between 0 and 1
   uniform_distribution = runif(how_many, min=0, max=1)
   
   # Declare an array to store the random numbers from the distribution of Y
@@ -17,7 +17,7 @@ generate_random_number <- function(how_many, exponential_rate) {
     ramdoms_from_exp_distr[unif_distr_counter] = get_Y_quantile(uniform_distribution[unif_distr_counter], exponential_rate)
   }
   
-  return(ramdoms_from_exp_distr)
+  return(list(randoms=ramdoms_from_exp_distr, uniform=uniform_distribution))
    
 }
 
@@ -33,8 +33,8 @@ y_probability_density <- function(real_number, exponential_rate) {
 realizations_needed = 10000
 exponential_rate_lambda = 2
 
-random_numbers = generate_random_number(how_many = realizations_needed, exponential_rate = exponential_rate_lambda)
-
+returned_values = generate_random_number(how_many = realizations_needed, exponential_rate = exponential_rate_lambda)
+random_numbers = returned_values[[1]]
 # Plot a histogram of these numbers, using the hist function with option freq = FALSE.
 hist(random_numbers, freq=FALSE, main= "Random Number Generation", xlab="Random Number", ylab="Density", col="blue")
 
@@ -49,3 +49,22 @@ legend("topright", legen=c("Random Number Density", "PDF of function Y"), col=c(
 ## Compute the sample mean and variance of your 10,000 realizations
 mean(random_numbers)
 var(random_numbers)
+
+## Generate 20 realizations from Y with lambda= 2
+new_realizations_needed = 20
+returned_values = generate_random_number(how_many = new_realizations_needed, exponential_rate = exponential_rate_lambda)
+random_numbers = returned_values[[1]]
+x_axis_values = returned_values[[2]]
+
+## Compute the likelihood function for all of the data
+log_likelihood_distribution = numeric(length(random_numbers))
+for(realization_counter in 1 : new_realizations_needed) {
+  log_likelihood_distribution[realization_counter] = new_realizations_needed * y_probability_density(real_number = x_axis_values[realization_counter], exponential_rate = exponential_rate_lambda)
+}
+
+plot(x_axis_values, log_likelihood_distribution)
+
+## Maximum likelihood estimate for lambda
+random_number_distributions_squared = random_numbers^2
+lambda_hat = new_realizations_needed / sum(random_number_distributions_squared)
+lambda_hat
