@@ -17,7 +17,7 @@ generate_random_number <- function(how_many, exponential_rate) {
     ramdoms_from_exp_distr[unif_distr_counter] = get_Y_quantile(uniform_distribution[unif_distr_counter], exponential_rate)
   }
   
-  return(list(randoms=ramdoms_from_exp_distr, uniform=uniform_distribution))
+  return(ramdoms_from_exp_distr)
    
 }
 
@@ -33,8 +33,8 @@ y_probability_density <- function(real_number, exponential_rate) {
 realizations_needed = 10000
 exponential_rate_lambda = 2
 
-returned_values = generate_random_number(how_many = realizations_needed, exponential_rate = exponential_rate_lambda)
-random_numbers = returned_values[[1]]
+random_numbers = generate_random_number(how_many = realizations_needed, exponential_rate = exponential_rate_lambda)
+
 # Plot a histogram of these numbers, using the hist function with option freq = FALSE.
 hist(random_numbers, freq=FALSE, main= "Random Number Generation", xlab="Random Number", ylab="Density", col="blue")
 
@@ -52,17 +52,31 @@ var(random_numbers)
 
 ## Generate 20 realizations from Y with lambda= 2
 new_realizations_needed = 20
-returned_values = generate_random_number(how_many = new_realizations_needed, exponential_rate = exponential_rate_lambda)
-random_numbers = returned_values[[1]]
-x_axis_values = returned_values[[2]]
+random_numbers = generate_random_number(how_many = new_realizations_needed, exponential_rate = exponential_rate_lambda)
+random_numbers = sort(random_numbers)
 
-## Compute the likelihood function for all of the data
+## Compute the likelihood distribution
 log_likelihood_distribution = numeric(length(random_numbers))
-for(realization_counter in 1 : new_realizations_needed) {
-  log_likelihood_distribution[realization_counter] = new_realizations_needed * y_probability_density(real_number = x_axis_values[realization_counter], exponential_rate = exponential_rate_lambda)
+lambda_values = seq(0,10,.01)
+
+# Compute the log likelihood for at each lamda point
+lambda_value_counter = 0
+for (lambda_value in lambda_values) {
+  
+  lambda_value_counter = lambda_value_counter + 1
+  log_likelihood = 0
+    
+  # Compute log likelihood at the point corresponding to the random number  
+  for(realization_counter in 1 : new_realizations_needed) {
+    log_likelihood = log_likelihood + y_probability_density(real_number = random_numbers[realization_counter], exponential_rate = lambda_values[lambda_value_counter])
+  }
+  
+  log_likelihood_distribution[lambda_value_counter] = log_likelihood
+  
 }
 
-plot(x_axis_values, log_likelihood_distribution)
+# Plot the likelihood function
+plot(lambda_values, log_likelihood_distribution, type='l', lwd=3, col="red")
 
 ## Maximum likelihood estimate for lambda
 random_number_distributions_squared = random_numbers^2
