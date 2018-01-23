@@ -76,9 +76,12 @@ for (lambda_value in lambda_values) {
 }
 
 # Plot the likelihood function
-plot(lambda_values, log_likelihood_distribution, type='l', lwd=3, col="red")
+plot(lambda_values, log_likelihood_distribution, type='l', lwd=3, col="red", main= "Log Likelihood Plot", xlab="Lambda", ylab="Log Likelihood")
 
 ## Maximum likelihood estimate for lambda
 random_number_distributions_squared = random_numbers^2
 lambda_hat = new_realizations_needed / sum(random_number_distributions_squared)
-lambda_hat
+
+## Draw a vertical line at the computed value of maximum likelihood
+abline(v = lambda_hat, col='blue', lwd = 3, lty = 2)
+legend("bottomright", legen=c("Log Likelihood Plot", "MLE Estimate"), col=c("red", "blue"), lwd=3, lty=1)
